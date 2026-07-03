@@ -1,0 +1,51 @@
+kind: KubeSchedulerConfiguration
+apiVersion: kubescheduler.config.k8s.io/v1
+clientConnection:
+  kubeconfig: /etc/kubernetes/kubeconfig.yaml
+leaderElection:
+  leaderElect: false
+profiles:
+  - schedulerName: cosmospan-scheduler
+    plugins:
+#      preFilter:
+#        disabled:
+#          - name: "*"
+#        enabled:
+#          - name: NodeResourcesFit
+      filter:
+#        disabled:
+#          - name: "*"
+        enabled:
+          - name: Uptime
+            weight: 1
+          - name: Bandwidth
+            weight: 1
+          - name: Latency
+            weight: 1
+      score:
+#        disabled:
+#          - name: "*"
+        enabled:
+          - name: Uptime
+            weight: 1
+          - name: Bandwidth
+            weight: 1
+          - name: NodeCost
+            weight: 3
+      reserve:
+        enabled:
+          - name: Bandwidth
+            weight: 1
+          - name: Latency
+            weight: 1
+    pluginConfig:
+#      - name: NodeResourcesFit
+#        args:
+#          scoringStrategy:
+#            resources:
+#              - name: cpu
+#                weight: 1
+#            type: MostAllocated # ?
+      - name: Uptime
+        args:
+          test: "test"

@@ -1,0 +1,48 @@
+# Proposed:
+all:
+  vars:
+    ansible_user: root
+  children:
+    cloud_k3s:
+      hosts:
+        "46.225.167.241": # cloud-k3s-pool-workers-worker1, cpx42 Nuremberg
+        "128.140.11.235": # cloud-k3s-pool-workers-worker2, cpx42 Nuremberg
+        "178.105.88.201": # cloud-k3s-pool-workers-worker3, cpx42 Nuremberg
+        "46.225.169.140": # cloud-k3s-pool-workers-worker4, cpx42 Nuremberg
+        "46.225.173.160": # cloud-k3s-pool-workers-worker5, cpx42 Nuremberg
+        "5.75.161.137": # cloud-k3s-pool-workers-worker6, cpx42 Nuremberg
+        "5.75.153.152": # cloud-k3s-master3, cpx32 Nuremberg
+        "178.104.247.158": # cloud-k3s-master2, cpx32 Nuremberg
+        "91.99.164.59": # cloud-k3s-master1, cpx32 Nuremberg
+    fog_k0s:
+      hosts:
+        "5.78.70.17": # fog-k0s, cpx41 Hillsboro
+    fog_k3s:
+      hosts:
+        "65.109.0.214": # fog-k3s-master3, cpx42 Helsinki
+        "157.180.125.250": # fog-k3s-master2, cpx42 Helsinki
+        "65.109.2.98": # fog-k3s-master1, cpx42 Helsinki
+# Baseline:
+#all:
+#  vars:
+#    ansible_user: root
+#  children:
+#    cloud_k3s:
+#      hosts:
+#        "5.75.153.152": # cloud-k3s-pool-workers-worker1, cpx42 Nuremberg
+#        "128.140.11.235": # cloud-k3s-pool-workers-worker2, cpx42 Nuremberg
+#        "5.75.161.137": # cloud-k3s-pool-workers-worker3, cpx42 Nuremberg
+#        "91.99.164.59": # cloud-k3s-pool-workers-worker4, cpx42 Nuremberg
+#        "46.225.169.140": # cloud-k3s-pool-workers-worker5, cpx42 Nuremberg
+#        "46.225.173.160": # cloud-k3s-pool-workers-worker6, cpx42 Nuremberg
+#        "46.225.167.241": # cloud-k3s-master3, cpx32 Nuremberg
+#        "178.104.247.158": # cloud-k3s-master2, cpx32 Nuremberg
+#        "178.105.88.201": # cloud-k3s-master1, cpx32 Nuremberg
+#    fog_k0s:
+#      hosts:
+#        "5.78.70.17": # fog-k0s, cpx41 Hillsboro
+#    fog_k3s:
+#      hosts:
+#        "65.109.0.214": # fog-k3s-master3, cpx42 Helsinki
+#        "65.109.2.98": # fog-k3s-master2, cpx42 Helsinki
+#        "157.180.125.250": # fog-k3s-master1, cpx42 Helsinki

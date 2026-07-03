@@ -1,0 +1,5 @@
+default:
+  just --list
+
+build:
+    docker build -t federation-descheduler:latest .

@@ -1,0 +1,152 @@
+{
+    "network_aware": {
+        "equal": {
+            "individual_scores": {
+                "cpu_requests": 93.44066785927251,
+                "memory_requests": 100.0,
+                "uptime_requests": 83.13253012048193,
+                "bandwidth_requests": 29.52380952380952,
+                "latency_requests": 74.29718875502009,
+                "fault_tolerance": 98.47715736040608,
+                "unscheduled_pods": 97.55671902268762
+            },
+            "final_score": 82.34686752023968
+        },
+        "latency_focused": {
+            "individual_scores": {
+                "cpu_requests": 93.44066785927251,
+                "memory_requests": 100.0,
+                "uptime_requests": 83.13253012048193,
+                "bandwidth_requests": 29.52380952380952,
+                "latency_requests": 74.29718875502009,
+                "fault_tolerance": 98.47715736040608,
+                "unscheduled_pods": 97.55671902268762
+            },
+            "final_score": 86.83127256518061
+        },
+        "bandwidth_focused": {
+            "individual_scores": {
+                "cpu_requests": 93.44066785927251,
+                "memory_requests": 100.0,
+                "uptime_requests": 83.13253012048193,
+                "bandwidth_requests": 29.52380952380952,
+                "latency_requests": 74.29718875502009,
+                "fault_tolerance": 98.47715736040608,
+                "unscheduled_pods": 97.55671902268762
+            },
+            "final_score": 77.13037373175166
+        },
+        "latency_50": {
+            "individual_scores": {
+                "cpu_requests": 93.44066785927251,
+                "memory_requests": 100.0,
+                "uptime_requests": 83.13253012048193,
+                "bandwidth_requests": 29.52380952380952,
+                "latency_requests": 74.29718875502009,
+                "fault_tolerance": 98.47715736040608,
+                "unscheduled_pods": 97.55671902268762
+            },
+            "final_score": 78.99283470139818
+        }
+    },
+    "cosmospan": {
+        "equal": {
+            "individual_scores": {
+                "cpu_requests": 100.0,
+                "memory_requests": 100.0,
+                "uptime_requests": 100.0,
+                "bandwidth_requests": 100.0,
+                "latency_requests": 100.0,
+                "fault_tolerance": 100.0,
+                "unscheduled_pods": 91.15764979639324
+            },
+            "final_score": 98.73680711377047
+        },
+        "latency_focused": {
+            "individual_scores": {
+                "cpu_requests": 100.0,
+                "memory_requests": 100.0,
+                "uptime_requests": 100.0,
+                "bandwidth_requests": 100.0,
+                "latency_requests": 100.0,
+                "fault_tolerance": 100.0,
+                "unscheduled_pods": 91.15764979639324
+            },
+            "final_score": 99.55788248981963
+        },
+        "bandwidth_focused": {
+            "individual_scores": {
+                "cpu_requests": 100.0,
+                "memory_requests": 100.0,
+                "uptime_requests": 100.0,
+                "bandwidth_requests": 100.0,
+                "latency_requests": 100.0,
+                "fault_tolerance": 100.0,
+                "unscheduled_pods": 91.15764979639324
+            },
+            "final_score": 99.55788248981963
+        },
+        "latency_50": {
+            "individual_scores": {
+                "cpu_requests": 100.0,
+                "memory_requests": 100.0,
+                "uptime_requests": 100.0,
+                "bandwidth_requests": 100.0,
+                "latency_requests": 100.0,
+                "fault_tolerance": 100.0,
+                "unscheduled_pods": 91.15764979639324
+            },
+            "final_score": 99.26313748303276
+        }
+    },
+    "default": {
+        "equal": {
+            "individual_scores": {
+                "cpu_requests": 94.12449098312973,
+                "memory_requests": 100.0,
+                "uptime_requests": 76.50602409638554,
+                "bandwidth_requests": 28.57142857142857,
+                "latency_requests": 3.0927835051546393,
+                "fault_tolerance": 100.0,
+                "unscheduled_pods": 100.0
+            },
+            "final_score": 71.75638959372834
+        },
+        "latency_focused": {
+            "individual_scores": {
+                "cpu_requests": 94.12449098312973,
+                "memory_requests": 100.0,
+                "uptime_requests": 76.50602409638554,
+                "bandwidth_requests": 28.57142857142857,
+                "latency_requests": 3.0927835051546393,
+                "fault_tolerance": 100.0,
+                "unscheduled_pods": 100.0
+            },
+            "final_score": 67.84514583026653
+        },
+        "bandwidth_focused": {
+            "individual_scores": {
+                "cpu_requests": 94.12449098312973,
+                "memory_requests": 100.0,
+                "uptime_requests": 76.50602409638554,
+                "bandwidth_requests": 28.57142857142857,
+                "latency_requests": 3.0927835051546393,
+                "fault_tolerance": 100.0,
+                "unscheduled_pods": 100.0
+            },
+            "final_score": 73.36551892795922
+        },
+        "latency_50": {
+            "individual_scores": {
+                "cpu_requests": 94.12449098312973,
+                "memory_requests": 100.0,
+                "uptime_requests": 76.50602409638554,
+                "bandwidth_requests": 28.57142857142857,
+                "latency_requests": 3.0927835051546393,
+                "fault_tolerance": 100.0,
+                "unscheduled_pods": 100.0
+            },
+            "final_score": 43.146553723489305
+        }
+    }
+}

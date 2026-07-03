@@ -1,0 +1,78 @@
+---
+- name: Start VM Benchmarks
+  hosts: all
+  gather_facts: no
+  vars_files:
+    - vars/main.yml
+  tasks:
+    - name: Start background hey to other VMs
+      shell: |
+        {% for dest in groups["all"] %}
+        {% if dest != inventory_hostname %}
+        (
+          hey_output=$(hey -z {{ benchmark_duration_seconds }}s -q 1 -c 1 http://{{ dest }}/)
+          avg_latency=$(echo "$hey_output" | grep 'Average:' | awk '{print $2}')
+          total_duration=$(echo "$hey_output" | grep 'Total:' | awk '{print $2}')
+          rps=$(echo "$hey_output" | grep 'Requests/sec:' | awk '{print $2}')
+          fastest=$(echo "$hey_output" | grep 'Fastest:' | awk '{print $2}')
+          slowest=$(echo "$hey_output" | grep 'Slowest:' | awk '{print $2}')
+          timestamp=$(date +"%Y-%m-%d %H:%M:%S")
+          echo "$timestamp,{{ inventory_hostname }},{{ dest }},$avg_latency,$total_duration,$rps,$fastest,$slowest" > /tmp/vm-benchmark-{{ inventory_hostname }}-to-{{ dest }}.csv
+        ) &
+        {% endif %}
+        {% endfor %}
+        wait
+      async: "{{ benchmark_duration_seconds | int + 300 }}"
+      poll: 0
+
+- name: Start Pod Benchmarks
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files:
+    - vars/main.yml
+  tasks:
+    - name: Dynamically discover active nodes
+      set_fact:
+        nodes: "{{ nodes | default([]) + [ {'ip': item, 'context': hostvars[item]['k8s_context']} ] }}"
+      loop: "{{ groups['all'] }}"
+      when: hostvars[item]['k8s_context'] is defined
+
+    - name: Start background hey between pods
+      shell: |
+        {% for src in nodes %}
+        {% for dst in nodes %}
+        {% if src.ip != dst.ip %}
+        kubectl --context={{ src.context }} -n {{ benchmark_namespace }} exec ping-pod-{{ src.ip | replace(".", "-") }} -- sh -c '
+          (
+            hey_output=$(hey -z {{ benchmark_duration_seconds }}s -q 1 -c 1 http://ping-svc-{{ dst.ip | replace(".", "-") }}.{{ benchmark_namespace }}.svc.cluster.local/)
+            avg_latency=$(echo "$hey_output" | grep "Average:" | awk "{print \$2}")
+            total_duration=$(echo "$hey_output" | grep "Total:" | awk "{print \$2}")
+            rps=$(echo "$hey_output" | grep "Requests/sec:" | awk "{print \$2}")
+            fastest=$(echo "$hey_output" | grep "Fastest:" | awk "{print \$2}")
+            slowest=$(echo "$hey_output" | grep "Slowest:" | awk "{print \$2}")
+            timestamp=$(date +"%Y-%m-%d %H:%M:%S")
+            echo "$timestamp,{{ src.ip }},{{ dst.ip }},$avg_latency,$total_duration,$rps,$fastest,$slowest" > /tmp/pod-benchmark-{{ src.ip | replace(".", "-") }}-to-{{ dst.ip | replace(".", "-") }}.csv
+          )
+        ' &
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+        wait
+      async: "{{ benchmark_duration_seconds | int + 300 }}"
+      poll: 0
+
+- name: Wait for benchmarks to complete
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files:
+    - vars/main.yml
+  tasks:
+    - name: Wait for the benchmark duration
+      pause:
+        seconds: "{{ benchmark_duration_seconds }}"
+
+    - name: Add a buffer to ensure final writes are completed
+      pause:
+        seconds: 30

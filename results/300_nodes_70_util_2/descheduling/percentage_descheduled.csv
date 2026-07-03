@@ -1,0 +1,13 @@
+# Percentage of previously scheduled pods that were descheduled due to environmental change
+mutation,percentage
+0,0
+1,0.75
+2,2.47
+3,2.86
+4,0.70
+5,0.50
+6,0.25
+7,0.31
+8,1.43
+9,1.55
+10,0.50

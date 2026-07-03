@@ -1,0 +1,13 @@
+services:
+  kube-scheduler:
+    image: registry.k8s.io/kube-scheduler:v1.29.14
+    container_name: kube-scheduler
+    network_mode: "host"
+    volumes:
+      - ./scheduler-config.yaml:/etc/kubernetes/scheduler-config.yaml:ro
+      - ./simulator_kubeconfig.conf:/etc/kubernetes/simulator_kubeconfig.conf:ro
+    entrypoint:
+      - kube-scheduler
+    command:
+      - --config=/etc/kubernetes/scheduler-config.yaml
+      - --v=2

@@ -1,0 +1,80 @@
+---
+- name: Setup Kubernetes resources for benchmark
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files:
+    - vars/main.yml
+
+  tasks:
+    - name: Dynamically discover active nodes and contexts
+      set_fact:
+        nodes: "{{ nodes | default([]) + [ {'ip': item, 'context': hostvars[item]['k8s_context']} ] }}"
+      loop: "{{ groups['all'] }}"
+      when: hostvars[item]['k8s_context'] is defined
+
+    - name: Extract unique active contexts
+      set_fact:
+        contexts: "{{ nodes | map(attribute='context') | unique | list }}"
+
+    - name: Create temporary directory for manifests
+      tempfile:
+        state: directory
+        suffix: benchmark-manifests
+      register: temp_dir
+
+    - name: Create namespace in all active clusters
+      shell: |
+        kubectl --context={{ item }} create namespace {{ benchmark_namespace }} --dry-run=client -o yaml | kubectl --context={{ item }} apply -f -
+        kubectl --context={{ item }} label namespace {{ benchmark_namespace }} istio-injection=enabled --overwrite
+      loop: "{{ contexts }}"
+
+    - name: Discover Kubernetes node names
+      shell: "kubectl --context={{ item.context }} get nodes -o wide | grep {{ item.ip }} | awk '{print $1}'"
+      register: discover_node_cmds
+      loop: "{{ nodes }}"
+
+    - name: Set node facts
+      set_fact:
+        node_facts: "{{ node_facts | default([]) + [ {'ip': item.item.ip, 'context': item.item.context, 'node_name': item.stdout | trim, 'ip_clean': item.item.ip | replace('.', '-')} ] }}"
+      loop: "{{ discover_node_cmds.results }}"
+
+    - name: Generate and apply Pod manifests
+      vars:
+        node_name: "{{ item.node_name }}"
+        node_ip_clean: "{{ item.ip_clean }}"
+      template:
+        src: templates/pod.yaml.j2
+        dest: "{{ temp_dir.path }}/pod-{{ item.ip_clean }}.yaml"
+      loop: "{{ node_facts }}"
+
+    - name: Apply Pod manifests to respective clusters
+      shell: "kubectl --context={{ item.context }} apply -f {{ temp_dir.path }}/pod-{{ item.ip_clean }}.yaml"
+      loop: "{{ node_facts }}"
+
+    - name: Generate Service manifests
+      vars:
+        node_ip_clean: "{{ item.ip_clean }}"
+      template:
+        src: templates/service.yaml.j2
+        dest: "{{ temp_dir.path }}/service-{{ item.ip_clean }}.yaml"
+      loop: "{{ node_facts }}"
+
+    - name: Apply Service manifests to ALL active clusters
+      shell: "kubectl --context={{ item[0] }} apply -f {{ temp_dir.path }}/service-{{ item[1].ip_clean }}.yaml"
+      with_nested:
+        - "{{ contexts }}"
+        - "{{ node_facts }}"
+
+    - name: Wait for all pods to be running
+      shell: "kubectl --context={{ item.context }} -n {{ benchmark_namespace }} wait --for=condition=Ready pod/ping-pod-{{ item.ip_clean }} --timeout=120s"
+      loop: "{{ node_facts }}"
+
+    - name: Install benchmark tools in all pods
+      shell: "kubectl --context={{ item.context }} -n {{ benchmark_namespace }} exec ping-pod-{{ item.ip_clean }} -- sh -c 'apk add --no-cache curl && curl -sL https://storage.googleapis.com/hey-releases/hey_linux_amd64 -o /usr/local/bin/hey && chmod +x /usr/local/bin/hey'"
+      loop: "{{ node_facts }}"
+
+    - name: Cleanup temporary directory
+      file:
+        path: "{{ temp_dir.path }}"
+        state: absent

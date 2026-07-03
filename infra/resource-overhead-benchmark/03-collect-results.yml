@@ -1,0 +1,52 @@
+---
+- name: Collect Resource Overhead Benchmark Results
+  hosts: all
+  gather_facts: no
+  vars_files:
+    - vars/main.yml
+  tasks:
+    - name: Check if the binary sar file exists
+      stat:
+        path: "{{ sar_output_bin }}"
+      register: sar_file
+
+    - name: Fail if binary sar file is missing
+      fail:
+        msg: "The binary file {{ sar_output_bin }} does not exist. Did the benchmark run successfully?"
+      when: not sar_file.stat.exists
+
+    - name: Create local directories for results
+      ansible.builtin.file:
+        path: "results/{{ phase }}/{{ item }}"
+        state: directory
+      delegate_to: localhost
+      loop:
+        - cpu
+        - memory
+        - disk
+        - network
+      run_once: true
+
+    - name: Convert CPU metrics to CSV
+      shell: "sadf -d {{ sar_output_bin }} -- -u | sed 's/;/,/g' > /tmp/cpu.csv"
+
+    - name: Convert Memory metrics to CSV
+      shell: "sadf -d {{ sar_output_bin }} -- -r | sed 's/;/,/g' > /tmp/memory.csv"
+
+    - name: Convert Disk metrics to CSV
+      shell: |
+        sadf -d {{ sar_output_bin }} -- -d | awk -F';' '$4 == "sda" || /^#/' | sed 's/;/,/g' > /tmp/disk.csv
+
+    - name: Convert Network metrics to CSV
+      shell: "sadf -d {{ sar_output_bin }} -- -n DEV | awk -F';' '/^#/ || $4 == \"eth0\"' | sed 's/;/,/g' > /tmp/network.csv"
+
+    - name: Fetch CSV results to local results directory
+      fetch:
+        src: "/tmp/{{ item }}.csv"
+        dest: "results/{{ phase }}/{{ item }}/{{ inventory_hostname }}.csv"
+        flat: yes
+      loop:
+        - cpu
+        - memory
+        - disk
+        - network

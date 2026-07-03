@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Node
+metadata:
+  annotations: {}
+  labels:
+    beta.kubernetes.io/arch: amd64
+    beta.kubernetes.io/os: linux
+    kubernetes.io/arch: amd64
+    kubernetes.io/hostname: "{{ hostname }}"
+    kubernetes.io/os: linux
+    kubernetes.io/role: agent
+    node-role.kubernetes.io/agent: ""
+    example.com/layer: "{{ layer }}"
+    # For compatibility with all 3 different schedulers:
+    # We assume small clusters in different regions, and
+    # latencies between these regions are the most important.
+    # Regions here are not necessary cloud regions, they are more granular.
+    topology.kubernetes.io/region: "{{ location }}"
+    example.com/cpu-cores: "{{ cpu_cores }}"
+    example.com/single-core-score: "{{ single_core_score }}"
+    example.com/base-single-core-score: "{{ base_single_core_score }}"
+    example.com/normalized-cores: "{{ normalized_cores }}"
+    example.com/node-30d-uptime-percentage: "{{ uptime_30d_percentage }}"
+    example.com/node-cost: "{{ cost }}"
+    example.com/ingress-bandwidth-Mbps: "{{ ingress_bandwidth_Mbps if ingress_bandwidth_Mbps else '' }}"
+    example.com/egress-bandwidth-Mbps: "{{ egress_bandwidth_Mbps if egress_bandwidth_Mbps else '' }}"
+    type: kwok
+  name: "{{ hostname }}"
+spec: {}
+status:
+  allocatable:
+    cpu: "{{ normalized_cores if scheduler_name == "cosmospan-scheduler" else cpu_cores}}"
+    memory: "{{ memory_KiB }}Ki"
+    pods: "100000"
+  capacity:
+    cpu: "{{ normalized_cores if scheduler_name == "cosmospan-scheduler" else  cpu_cores }}"
+    memory: "{{ memory_KiB }}Ki"
+    pods: "100000"
+  nodeInfo:
+    architecture: amd64
+    bootID: ""
+    containerRuntimeVersion: ""
+    kernelVersion: ""
+    kubeProxyVersion: fake
+    kubeletVersion: fake
+    machineID: ""
+    operatingSystem: linux
+    osImage: ""
+    systemUUID: ""
+  phase: Running

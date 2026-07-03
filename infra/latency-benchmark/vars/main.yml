@@ -1,0 +1,7 @@
+# The total duration of the benchmark in seconds.
+# (e.g., 120 for 2 minutes, 3600 for 1 hour)
+# benchmark_duration_seconds: 3600
+benchmark_duration_seconds: 60
+
+# The namespace where benchmark resources will be deployed
+benchmark_namespace: latency-benchmark

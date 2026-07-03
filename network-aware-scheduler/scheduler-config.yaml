@@ -1,0 +1,35 @@
+# Default example config provided by the authors:
+# 23th May 2026
+# https://github.com/kubernetes-sigs/scheduler-plugins/tree/master/pkg/networkaware
+apiVersion: kubescheduler.config.k8s.io/v1
+kind: KubeSchedulerConfiguration
+leaderElection:
+  leaderElect: false
+clientConnection:
+  kubeconfig: "/etc/kubernetes/simulator_kubeconfig.conf"
+profiles:
+  - schedulerName: network-aware-scheduler
+    plugins:
+      multiPoint:
+        enabled:
+          - name: NetworkOverhead
+            weight: 5 # A higher weight is given to NetworkOverhead to favor allocation schemes with lower latency.
+          # Scheduler fails to start with this enabled
+          # - name: BalancedAllocation
+          #  weight: 1
+      queueSort:
+        enabled:
+          - name: TopologicalSort
+        disabled:
+          - name: "*"
+    pluginConfig:
+      - name: TopologicalSort
+        args:
+          namespaces:
+            - "default"
+      - name: NetworkOverhead
+        args:
+          namespaces:
+            - "default"
+          weightsName: "UserDefined" # The respective weights to consider in the plugins
+          networkTopologyName: "net-topology-test" # networkTopology CR to be used by the plugins

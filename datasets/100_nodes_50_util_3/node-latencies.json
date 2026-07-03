@@ -1,0 +1,773 @@
+{
+  "inter-cluster": {
+    "cloud-location-0": {
+      "cloud-location-1": 32,
+      "cloud-location-2": 20,
+      "fog-location-0": 29,
+      "fog-location-1": 50,
+      "fog-location-2": 15,
+      "fog-location-3": 15,
+      "fog-location-4": 15,
+      "fog-location-5": 18,
+      "fog-location-6": 21,
+      "fog-location-7": 46,
+      "fog-location-8": 30,
+      "fog-location-9": 23,
+      "fog-location-10": 20,
+      "fog-location-11": 50,
+      "fog-location-12": 31,
+      "fog-location-13": 29,
+      "fog-location-14": 41,
+      "fog-location-15": 32,
+      "fog-location-16": 17,
+      "fog-location-17": 38,
+      "fog-location-18": 28,
+      "fog-location-19": 43,
+      "fog-location-20": 36,
+      "fog-location-21": 16,
+      "fog-location-22": 24,
+      "fog-location-23": 18
+    },
+    "cloud-location-1": {
+      "cloud-location-2": 31,
+      "fog-location-0": 18,
+      "fog-location-1": 30,
+      "fog-location-2": 20,
+      "fog-location-3": 36,
+      "fog-location-4": 37,
+      "fog-location-5": 25,
+      "fog-location-6": 17,
+      "fog-location-7": 38,
+      "fog-location-8": 28,
+      "fog-location-9": 34,
+      "fog-location-10": 42,
+      "fog-location-11": 41,
+      "fog-location-12": 27,
+      "fog-location-13": 39,
+      "fog-location-14": 45,
+      "fog-location-15": 49,
+      "fog-location-16": 49,
+      "fog-location-17": 38,
+      "fog-location-18": 18,
+      "fog-location-19": 16,
+      "fog-location-20": 39,
+      "fog-location-21": 35,
+      "fog-location-22": 42,
+      "fog-location-23": 46
+    },
+    "cloud-location-2": {
+      "fog-location-0": 28,
+      "fog-location-1": 26,
+      "fog-location-2": 23,
+      "fog-location-3": 44,
+      "fog-location-4": 37,
+      "fog-location-5": 43,
+      "fog-location-6": 31,
+      "fog-location-7": 16,
+      "fog-location-8": 40,
+      "fog-location-9": 29,
+      "fog-location-10": 33,
+      "fog-location-11": 41,
+      "fog-location-12": 23,
+      "fog-location-13": 34,
+      "fog-location-14": 38,
+      "fog-location-15": 15,
+      "fog-location-16": 32,
+      "fog-location-17": 25,
+      "fog-location-18": 15,
+      "fog-location-19": 47,
+      "fog-location-20": 48,
+      "fog-location-21": 19,
+      "fog-location-22": 19,
+      "fog-location-23": 30
+    },
+    "fog-location-0": {
+      "fog-location-1": 44,
+      "fog-location-2": 20,
+      "fog-location-3": 41,
+      "fog-location-4": 49,
+      "fog-location-5": 26,
+      "fog-location-6": 32,
+      "fog-location-7": 34,
+      "fog-location-8": 22,
+      "fog-location-9": 24,
+      "fog-location-10": 37,
+      "fog-location-11": 31,
+      "fog-location-12": 36,
+      "fog-location-13": 18,
+      "fog-location-14": 17,
+      "fog-location-15": 34,
+      "fog-location-16": 27,
+      "fog-location-17": 50,
+      "fog-location-18": 44,
+      "fog-location-19": 19,
+      "fog-location-20": 17,
+      "fog-location-21": 28,
+      "fog-location-22": 31,
+      "fog-location-23": 46
+    },
+    "fog-location-1": {
+      "fog-location-2": 39,
+      "fog-location-3": 27,
+      "fog-location-4": 22,
+      "fog-location-5": 33,
+      "fog-location-6": 22,
+      "fog-location-7": 34,
+      "fog-location-8": 18,
+      "fog-location-9": 29,
+      "fog-location-10": 21,
+      "fog-location-11": 20,
+      "fog-location-12": 28,
+      "fog-location-13": 19,
+      "fog-location-14": 36,
+      "fog-location-15": 44,
+      "fog-location-16": 29,
+      "fog-location-17": 19,
+      "fog-location-18": 43,
+      "fog-location-19": 28,
+      "fog-location-20": 39,
+      "fog-location-21": 18,
+      "fog-location-22": 37,
+      "fog-location-23": 35
+    },
+    "fog-location-2": {
+      "fog-location-3": 42,
+      "fog-location-4": 31,
+      "fog-location-5": 20,
+      "fog-location-6": 38,
+      "fog-location-7": 45,
+      "fog-location-8": 45,
+      "fog-location-9": 38,
+      "fog-location-20": 24,
+      "fog-location-21": 46,
+      "fog-location-22": 30,
+      "fog-location-23": 27
+    },
+    "fog-location-3": {
+      "fog-location-4": 40,
+      "fog-location-5": 16,
+      "fog-location-6": 30,
+      "fog-location-7": 28,
+      "fog-location-8": 22,
+      "fog-location-9": 34
+    },
+    "fog-location-4": {
+      "fog-location-5": 39,
+      "fog-location-6": 36,
+      "fog-location-7": 50,
+      "fog-location-8": 34,
+      "fog-location-9": 33
+    },
+    "fog-location-5": {
+      "fog-location-6": 26,
+      "fog-location-7": 20,
+      "fog-location-8": 28,
+      "fog-location-9": 44
+    },
+    "fog-location-6": {
+      "fog-location-7": 27,
+      "fog-location-8": 46,
+      "fog-location-9": 42
+    },
+    "fog-location-7": {
+      "fog-location-8": 33,
+      "fog-location-9": 15
+    },
+    "fog-location-8": {
+      "fog-location-9": 45
+    },
+    "fog-location-10": {
+      "fog-location-2": 30,
+      "fog-location-3": 24,
+      "fog-location-4": 15,
+      "fog-location-5": 46,
+      "fog-location-6": 24,
+      "fog-location-7": 16,
+      "fog-location-8": 48,
+      "fog-location-9": 31,
+      "fog-location-11": 36,
+      "fog-location-12": 32,
+      "fog-location-13": 15,
+      "fog-location-14": 23,
+      "fog-location-15": 22,
+      "fog-location-16": 17,
+      "fog-location-17": 39,
+      "fog-location-18": 27,
+      "fog-location-19": 49,
+      "fog-location-20": 32,
+      "fog-location-21": 29,
+      "fog-location-22": 19,
+      "fog-location-23": 42
+    },
+    "fog-location-11": {
+      "fog-location-2": 15,
+      "fog-location-3": 20,
+      "fog-location-4": 18,
+      "fog-location-5": 17,
+      "fog-location-6": 36,
+      "fog-location-7": 37,
+      "fog-location-8": 46,
+      "fog-location-9": 20,
+      "fog-location-12": 33,
+      "fog-location-13": 28,
+      "fog-location-14": 40,
+      "fog-location-15": 33,
+      "fog-location-16": 31,
+      "fog-location-17": 16,
+      "fog-location-18": 49,
+      "fog-location-19": 36,
+      "fog-location-20": 24,
+      "fog-location-21": 49,
+      "fog-location-22": 40,
+      "fog-location-23": 28
+    },
+    "fog-location-12": {
+      "fog-location-2": 47,
+      "fog-location-3": 47,
+      "fog-location-4": 39,
+      "fog-location-5": 17,
+      "fog-location-6": 50,
+      "fog-location-7": 41,
+      "fog-location-8": 18,
+      "fog-location-9": 25,
+      "fog-location-13": 31,
+      "fog-location-14": 40,
+      "fog-location-15": 45,
+      "fog-location-16": 28,
+      "fog-location-17": 45,
+      "fog-location-18": 41,
+      "fog-location-19": 48,
+      "fog-location-20": 23,
+      "fog-location-21": 35,
+      "fog-location-22": 17,
+      "fog-location-23": 28
+    },
+    "fog-location-13": {
+      "fog-location-2": 31,
+      "fog-location-3": 17,
+      "fog-location-4": 23,
+      "fog-location-5": 40,
+      "fog-location-6": 26,
+      "fog-location-7": 39,
+      "fog-location-8": 29,
+      "fog-location-9": 24,
+      "fog-location-14": 18,
+      "fog-location-15": 21,
+      "fog-location-16": 49,
+      "fog-location-17": 50,
+      "fog-location-18": 36,
+      "fog-location-19": 24,
+      "fog-location-20": 22,
+      "fog-location-21": 27,
+      "fog-location-22": 43,
+      "fog-location-23": 42
+    },
+    "fog-location-14": {
+      "fog-location-2": 40,
+      "fog-location-3": 49,
+      "fog-location-4": 19,
+      "fog-location-5": 24,
+      "fog-location-6": 31,
+      "fog-location-7": 30,
+      "fog-location-8": 18,
+      "fog-location-9": 26,
+      "fog-location-15": 19,
+      "fog-location-16": 29,
+      "fog-location-17": 26,
+      "fog-location-18": 48,
+      "fog-location-19": 38,
+      "fog-location-20": 44,
+      "fog-location-21": 21,
+      "fog-location-22": 19,
+      "fog-location-23": 15
+    },
+    "fog-location-15": {
+      "fog-location-2": 28,
+      "fog-location-3": 45,
+      "fog-location-4": 50,
+      "fog-location-5": 42,
+      "fog-location-6": 30,
+      "fog-location-7": 44,
+      "fog-location-8": 27,
+      "fog-location-9": 33,
+      "fog-location-16": 47,
+      "fog-location-17": 35,
+      "fog-location-18": 47,
+      "fog-location-19": 30,
+      "fog-location-20": 32,
+      "fog-location-21": 44,
+      "fog-location-22": 26,
+      "fog-location-23": 38
+    },
+    "fog-location-16": {
+      "fog-location-2": 42,
+      "fog-location-3": 40,
+      "fog-location-4": 48,
+      "fog-location-5": 28,
+      "fog-location-6": 46,
+      "fog-location-7": 25,
+      "fog-location-8": 49,
+      "fog-location-9": 45,
+      "fog-location-17": 27,
+      "fog-location-18": 22,
+      "fog-location-19": 36,
+      "fog-location-20": 37,
+      "fog-location-21": 15,
+      "fog-location-22": 19,
+      "fog-location-23": 26
+    },
+    "fog-location-17": {
+      "fog-location-2": 42,
+      "fog-location-3": 50,
+      "fog-location-4": 25,
+      "fog-location-5": 23,
+      "fog-location-6": 31,
+      "fog-location-7": 34,
+      "fog-location-8": 50,
+      "fog-location-9": 42,
+      "fog-location-18": 32,
+      "fog-location-19": 17,
+      "fog-location-20": 20,
+      "fog-location-21": 50,
+      "fog-location-22": 21,
+      "fog-location-23": 44
+    },
+    "fog-location-18": {
+      "fog-location-2": 29,
+      "fog-location-3": 17,
+      "fog-location-4": 36,
+      "fog-location-5": 19,
+      "fog-location-6": 46,
+      "fog-location-7": 16,
+      "fog-location-8": 46,
+      "fog-location-9": 29,
+      "fog-location-19": 18,
+      "fog-location-20": 36,
+      "fog-location-21": 22,
+      "fog-location-22": 16,
+      "fog-location-23": 15
+    },
+    "fog-location-19": {
+      "fog-location-2": 21,
+      "fog-location-3": 19,
+      "fog-location-4": 18,
+      "fog-location-5": 37,
+      "fog-location-6": 25,
+      "fog-location-7": 22,
+      "fog-location-8": 35,
+      "fog-location-9": 15,
+      "fog-location-20": 34,
+      "fog-location-21": 23,
+      "fog-location-22": 48,
+      "fog-location-23": 46
+    },
+    "fog-location-20": {
+      "fog-location-3": 19,
+      "fog-location-4": 30,
+      "fog-location-5": 42,
+      "fog-location-6": 49,
+      "fog-location-7": 22,
+      "fog-location-8": 16,
+      "fog-location-9": 42,
+      "fog-location-21": 28,
+      "fog-location-22": 46,
+      "fog-location-23": 19
+    },
+    "fog-location-21": {
+      "fog-location-3": 23,
+      "fog-location-4": 36,
+      "fog-location-5": 50,
+      "fog-location-6": 37,
+      "fog-location-7": 41,
+      "fog-location-8": 37,
+      "fog-location-9": 34,
+      "fog-location-22": 16,
+      "fog-location-23": 25
+    },
+    "fog-location-22": {
+      "fog-location-3": 34,
+      "fog-location-4": 48,
+      "fog-location-5": 29,
+      "fog-location-6": 43,
+      "fog-location-7": 43,
+      "fog-location-8": 49,
+      "fog-location-9": 50,
+      "fog-location-23": 30
+    },
+    "fog-location-23": {
+      "fog-location-3": 27,
+      "fog-location-4": 24,
+      "fog-location-5": 39,
+      "fog-location-6": 28,
+      "fog-location-7": 21,
+      "fog-location-8": 25,
+      "fog-location-9": 34
+    }
+  },
+  "intra-cluster": {
+    "cloud-location-0": {
+      "0": {
+        "1": 4,
+        "2": 2,
+        "3": 3,
+        "4": 3,
+        "5": 4
+      },
+      "1": {
+        "2": 3,
+        "3": 5,
+        "4": 3,
+        "5": 3
+      },
+      "2": {
+        "3": 5,
+        "4": 5,
+        "5": 2
+      },
+      "3": {
+        "4": 5,
+        "5": 2
+      },
+      "4": {
+        "5": 3
+      }
+    },
+    "cloud-location-1": {
+      "6": {
+        "7": 5,
+        "8": 5,
+        "9": 3
+      },
+      "7": {
+        "8": 5,
+        "9": 5
+      },
+      "8": {
+        "9": 4
+      },
+      "10": {
+        "6": 4,
+        "7": 5,
+        "8": 4,
+        "9": 3,
+        "11": 4,
+        "12": 2,
+        "13": 2
+      },
+      "11": {
+        "6": 4,
+        "7": 2,
+        "8": 3,
+        "9": 4,
+        "12": 3,
+        "13": 2
+      },
+      "12": {
+        "6": 4,
+        "7": 2,
+        "8": 2,
+        "9": 4,
+        "13": 3
+      },
+      "13": {
+        "6": 3,
+        "7": 5,
+        "8": 2,
+        "9": 4
+      }
+    },
+    "cloud-location-2": {
+      "14": {
+        "15": 3,
+        "16": 3,
+        "17": 4,
+        "18": 4,
+        "19": 4
+      },
+      "15": {
+        "16": 5,
+        "17": 2,
+        "18": 5,
+        "19": 3
+      },
+      "16": {
+        "17": 2,
+        "18": 4,
+        "19": 4
+      },
+      "17": {
+        "18": 3,
+        "19": 5
+      },
+      "18": {
+        "19": 3
+      }
+    },
+    "fog-location-0": {
+      "20": {
+        "21": 3,
+        "22": 4
+      },
+      "21": {
+        "22": 2
+      }
+    },
+    "fog-location-1": {
+      "23": {
+        "24": 4,
+        "25": 3
+      },
+      "24": {
+        "25": 2
+      }
+    },
+    "fog-location-2": {
+      "26": {
+        "27": 2,
+        "28": 2,
+        "29": 2
+      },
+      "27": {
+        "28": 2,
+        "29": 2
+      },
+      "28": {
+        "29": 2
+      }
+    },
+    "fog-location-3": {
+      "30": {
+        "31": 4,
+        "32": 3,
+        "33": 4
+      },
+      "31": {
+        "32": 2,
+        "33": 5
+      },
+      "32": {
+        "33": 3
+      }
+    },
+    "fog-location-4": {
+      "34": {
+        "35": 5,
+        "36": 2
+      },
+      "35": {
+        "36": 2
+      }
+    },
+    "fog-location-5": {
+      "37": {
+        "38": 4
+      }
+    },
+    "fog-location-6": {
+      "39": {
+        "40": 3,
+        "41": 3,
+        "42": 2
+      },
+      "40": {
+        "41": 4,
+        "42": 2
+      },
+      "41": {
+        "42": 3
+      }
+    },
+    "fog-location-7": {
+      "43": {
+        "44": 3,
+        "45": 2,
+        "46": 5,
+        "47": 4
+      },
+      "44": {
+        "45": 4,
+        "46": 3,
+        "47": 4
+      },
+      "45": {
+        "46": 4,
+        "47": 2
+      },
+      "46": {
+        "47": 3
+      }
+    },
+    "fog-location-8": {
+      "48": {
+        "49": 4,
+        "50": 5,
+        "51": 5,
+        "52": 5
+      },
+      "49": {
+        "50": 2,
+        "51": 5,
+        "52": 5
+      },
+      "50": {
+        "51": 4,
+        "52": 3
+      },
+      "51": {
+        "52": 4
+      }
+    },
+    "fog-location-9": {
+      "53": {
+        "54": 4,
+        "55": 3
+      },
+      "54": {
+        "55": 3
+      }
+    },
+    "fog-location-10": {
+      "56": {
+        "57": 3,
+        "58": 3,
+        "59": 2
+      },
+      "57": {
+        "58": 2,
+        "59": 5
+      },
+      "58": {
+        "59": 4
+      }
+    },
+    "fog-location-11": {
+      "60": {
+        "61": 4
+      }
+    },
+    "fog-location-12": {
+      "62": {
+        "63": 3
+      }
+    },
+    "fog-location-13": {
+      "64": {
+        "65": 3,
+        "66": 2,
+        "67": 3,
+        "68": 5
+      },
+      "65": {
+        "66": 2,
+        "67": 3,
+        "68": 3
+      },
+      "66": {
+        "67": 3,
+        "68": 2
+      },
+      "67": {
+        "68": 5
+      }
+    },
+    "fog-location-14": {
+      "69": {
+        "70": 4
+      }
+    },
+    "fog-location-15": {
+      "71": {
+        "72": 5
+      }
+    },
+    "fog-location-16": {
+      "73": {
+        "74": 5,
+        "75": 2
+      },
+      "74": {
+        "75": 4
+      }
+    },
+    "fog-location-17": {
+      "76": {
+        "77": 4,
+        "78": 5,
+        "79": 5
+      },
+      "77": {
+        "78": 4,
+        "79": 2
+      },
+      "78": {
+        "79": 5
+      }
+    },
+    "fog-location-18": {
+      "80": {
+        "81": 5,
+        "82": 5,
+        "83": 5,
+        "84": 3
+      },
+      "81": {
+        "82": 5,
+        "83": 3,
+        "84": 5
+      },
+      "82": {
+        "83": 3,
+        "84": 2
+      },
+      "83": {
+        "84": 3
+      }
+    },
+    "fog-location-19": {
+      "85": {
+        "86": 2
+      }
+    },
+    "fog-location-20": {
+      "87": {
+        "88": 2,
+        "89": 2
+      },
+      "88": {
+        "89": 3
+      }
+    },
+    "fog-location-21": {
+      "90": {
+        "91": 2,
+        "92": 4
+      },
+      "91": {
+        "92": 3
+      }
+    },
+    "fog-location-22": {
+      "93": {
+        "94": 3,
+        "95": 5
+      },
+      "94": {
+        "95": 2
+      }
+    },
+    "fog-location-23": {
+      "96": {
+        "97": 2,
+        "98": 3,
+        "99": 3
+      },
+      "97": {
+        "98": 3,
+        "99": 5
+      },
+      "98": {
+        "99": 4
+      }
+    }
+  }
+}

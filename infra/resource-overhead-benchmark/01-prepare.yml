@@ -1,0 +1,20 @@
+---
+- name: Prepare Nodes for Resource Overhead Benchmark
+  hosts: all
+  gather_facts: yes
+  tasks:
+    - name: Install sysstat on Debian/Ubuntu systems
+      apt:
+        name: sysstat
+        state: present
+        update_cache: yes
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: Verify sar is installed and working
+      command: sar -V
+      register: sar_version
+      changed_when: false
+
+    - name: Display sar version
+      debug:
+        msg: "Installed sar version: {{ sar_version.stdout_lines[0] }}"

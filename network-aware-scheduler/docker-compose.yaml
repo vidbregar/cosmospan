@@ -1,0 +1,20 @@
+services:
+  network-aware-scheduler:
+    image: registry.k8s.io/scheduler-plugins/kube-scheduler:v0.29.7
+    container_name: network-aware-scheduler
+    network_mode: "host"
+    volumes:
+      - ./scheduler-config.yaml:/etc/kubernetes/scheduler-config.yaml:ro
+      - ./simulator_kubeconfig.conf:/etc/kubernetes/simulator_kubeconfig.conf:ro
+    command:
+      - --config=/etc/kubernetes/scheduler-config.yaml
+      - --v=4
+
+  network-aware-controller:
+    image: registry.k8s.io/scheduler-plugins/controller:v0.29.7
+    container_name: network-aware-controller
+    network_mode: "host"
+    volumes:
+      - ./simulator_kubeconfig.conf:/etc/kubernetes/simulator_kubeconfig.conf:ro
+    command:
+      - --kubeconfig=/etc/kubernetes/simulator_kubeconfig.conf

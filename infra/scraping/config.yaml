@@ -1,0 +1,57 @@
+crds:
+  create: true
+
+alloy:
+  configMap:
+    content: |
+      discovery.kubernetes "nodes" {
+        role = "node"
+      }
+      
+      prometheus.scrape "cadvisor" {
+        targets = discovery.kubernetes.nodes.targets
+      
+        scheme = "https"
+      
+        metrics_path = "/metrics/cadvisor"
+      
+        bearer_token_file = "/var/run/secrets/kubernetes.io/serviceaccount/token"
+      
+        tls_config {
+          insecure_skip_verify = true
+        }
+      
+        forward_to = [prometheus.remote_write.default.receiver]
+      }
+      
+      discovery.kubernetes "ksm" {
+        role = "service"
+      }
+      
+      discovery.relabel "ksm" {
+        targets = discovery.kubernetes.ksm.targets
+      
+        rule {
+          source_labels = ["__meta_kubernetes_service_name"]
+          regex = "kube-state-metrics"
+          action = "keep"
+        }
+      
+        rule {
+          source_labels = ["__meta_kubernetes_namespace"]
+          regex = "monitoring"
+          action = "keep"
+        }
+      }
+      
+      prometheus.scrape "kube_state_metrics" {
+        targets = discovery.relabel.ksm.output
+      
+        forward_to = [prometheus.remote_write.default.receiver]
+      }
+      
+      prometheus.remote_write "default" {
+        endpoint {
+          url = "http://mimir-gateway.mimir.svc.cluster.local:80/api/v1/push"
+        }
+      }

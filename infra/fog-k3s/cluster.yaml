@@ -1,0 +1,64 @@
+cluster_name: fog-k3s
+kubeconfig_path: "./kubeconfig"
+k3s_version: v1.34.8+k3s1
+protect_against_deletion: false
+
+networking:
+  ssh:
+    port: 22
+    use_agent: false
+    use_private_ip: false
+    public_key_path: "~/.ssh/hetzner.pub"
+    private_key_path: "~/.ssh/hetzner"
+  allowed_networks:
+    ssh:
+      - 0.0.0.0/0
+    api:
+      - 0.0.0.0/0
+    custom_firewall_rules:
+      - description: "Allow HTTP from any IPv4"
+        direction: in
+        protocol: tcp
+        port: 80
+        source_ips:
+          - 0.0.0.0/0
+      - description: "Istio East-West Gateway - Mutual TLS Mesh Traffic"
+        direction: in
+        protocol: tcp
+        port: 15443
+        source_ips:
+          - 0.0.0.0/0
+      - description: "Istio East-West Gateway - Cross-Cluster Discovery (XDS)"
+        direction: in
+        protocol: tcp
+        port: 15012
+        source_ips:
+          - 0.0.0.0/0
+  public_network:
+    ipv4: true
+    ipv6: false
+  private_network:
+    enabled: true
+    subnet: 10.2.0.0/16
+
+  cni:
+    cluster_cidr: 10.245.0.0/16
+    service_cidr: 10.44.0.0/16
+    cluster_dns: 10.44.0.10
+
+schedule_workloads_on_masters: true
+
+masters_pool:
+  instance_type: cpx42
+  instance_count: 3
+  image: ubuntu-24.04
+  locations:
+    - hel1
+    - hel1
+    - hel1
+
+addons:
+  metrics_server:
+    enabled: true
+  servicelb: # no luck using Hetzner LBs + Istio multi-cluster
+    enabled: true

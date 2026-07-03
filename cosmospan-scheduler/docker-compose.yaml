@@ -1,0 +1,15 @@
+services:
+  cosmospan-scheduler:
+    image: localhost:5000/scheduler-plugins/federation-scheduler
+    container_name: cosmospan-scheduler
+    ports:
+      - "127.0.0.1:8888:8888"
+    volumes:
+      - ./kubeconfig.yaml:/etc/kubernetes/kubeconfig.yaml
+      - ./proposed_scheduler.yaml:/etc/kubernetes/proposed_scheduler.yaml
+      - ./dataset/node-latencies.json:/etc/federation-scheduler/node-latencies.json
+      - ./dataset/workload-latency-requests.json:/etc/federation-scheduler/workload-latency-requests.json
+    command:
+      - kube-scheduler
+      - --config=/etc/kubernetes/proposed_scheduler.yaml
+      - --v=4

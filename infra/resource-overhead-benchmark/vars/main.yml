@@ -1,0 +1,11 @@
+---
+# Default configuration for resource overhead benchmark
+benchmark_duration_seconds: 60
+interval_seconds: 1
+
+# Remote paths
+sar_output_bin: "/tmp/resource_overhead.sar"
+sar_output_csv: "/tmp/resource_overhead.csv"
+
+# Default run phase: "baseline" or "proposed"
+phase: "baseline"

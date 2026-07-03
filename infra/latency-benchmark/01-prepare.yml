@@ -1,0 +1,36 @@
+---
+- name: Prepare nodes for benchmark
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Install Docker and curl
+      apt:
+        name:
+          - docker.io
+          - curl
+        state: present
+        update_cache: yes
+      become: yes
+
+    - name: Install hey
+      become: yes
+      get_url:
+        url: https://storage.googleapis.com/hey-releases/hey_linux_amd64
+        dest: /usr/local/bin/hey
+        mode: '0755'
+
+    - name: Ensure Docker is running
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+      become: yes
+
+    - name: Stop and remove any previous nginx-vm-benchmark container
+      command: docker stop nginx-vm-benchmark && docker rm nginx-vm-benchmark
+      failed_when: false
+      become: yes
+
+    - name: Run Nginx container on host network
+      command: docker run -d --name nginx-vm-benchmark --net=host --rm nginx:alpine
+      become: yes

@@ -1,0 +1,52 @@
+---
+- name: Collect VM Results
+  hosts: all
+  gather_facts: no
+  vars_files:
+    - vars/main.yml
+  tasks:
+    - name: Combine VM CSV files
+      shell: |
+        # Write header once to the final file
+        echo "timestamp,source_ip,destination_ip,average_latency_s,measurement_duration_s,requests_per_second,minimal_latency_s,maximal_latency_s" > /tmp/vm-results-{{ inventory_hostname }}.csv
+        # Append header-less intermediate files
+        cat /tmp/vm-benchmark-{{ inventory_hostname }}-to-*.csv >> /tmp/vm-results-{{ inventory_hostname }}.csv
+      failed_when: false
+
+    - name: Fetch VM results to local machine
+      fetch:
+        src: "/tmp/vm-results-{{ inventory_hostname }}.csv"
+        dest: "results/vm-results-{{ inventory_hostname }}.csv"
+        flat: yes
+
+- name: Collect Pod Results
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files:
+    - vars/main.yml
+  tasks:
+    - name: Dynamically discover active nodes
+      set_fact:
+        nodes: "{{ nodes | default([]) + [ {'ip': item, 'context': hostvars[item]['k8s_context']} ] }}"
+      loop: "{{ groups['all'] }}"
+      when: hostvars[item]['k8s_context'] is defined
+
+    - name: Ensure local results directory exists
+      file:
+        path: results
+        state: directory
+
+    - name: Combine Pod CSV files and copy to local
+      shell: |
+        # Command to run inside the pod to consolidate results
+        consolidate_cmd="echo 'timestamp,source_ip,destination_ip,average_latency_s,measurement_duration_s,requests_per_second,minimal_latency_s,maximal_latency_s' > /tmp/pod-results-{{ item.ip | replace(".", "-") }}.csv && 
+                         cat /tmp/pod-benchmark-{{ item.ip | replace(".", "-") }}-to-*.csv >> /tmp/pod-results-{{ item.ip | replace(".", "-") }}.csv"
+        
+        # Execute consolidation
+        kubectl --context={{ item.context }} -n {{ benchmark_namespace }} exec ping-pod-{{ item.ip | replace(".", "-") }} -- sh -c "$consolidate_cmd"
+        
+        # Stream results to local file
+        kubectl --context={{ item.context }} -n {{ benchmark_namespace }} exec ping-pod-{{ item.ip | replace(".", "-") }} -- cat /tmp/pod-results-{{ item.ip | replace(".", "-") }}.csv > results/pod-results-{{ item.ip | replace(".", "-") }}.csv
+      loop: "{{ nodes }}"
+      failed_when: false

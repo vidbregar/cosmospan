@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ id }}"
+  namespace: "default"
+  labels:
+    appgroup.diktyo.x-k8s.io: "app-{{ app_type }}-{{ app_id }}"
+    appgroup.diktyo.x-k8s.io.workload: "{{ id }}"
+spec:
+  replicas: {{ replicas }}
+  selector:
+    matchLabels:
+      id: "{{ id }}"
+  template:
+    metadata:
+      labels:
+        id: "{{ id }}"
+        app-id: "{{ app_id }}"
+        app-type: "{{ app_type }}"
+        workload-id: "{{ workload_id }}"
+{%- if ingress_bandwidth_request_Mbps is not none +%}
+        ingress-bandwidth-request-Mbps: "{{ ingress_bandwidth_request_Mbps }}"
+{%- endif +%}
+{%- if egress_bandwidth_request_Mbps is not none +%}
+        egress-bandwidth-request-Mbps: "{{ egress_bandwidth_request_Mbps }}"
+{%- endif +%}
+{%- if uptime_30d_percentage_request is not none +%}
+        uptime-30d-percentage-request: "{{ uptime_30d_percentage_request }}"
+{%- endif +%}
+        appgroup.diktyo.x-k8s.io: "app-{{ app_type }}-{{ app_id }}"
+        appgroup.diktyo.x-k8s.io.workload: "{{ id }}"
+    spec:
+      schedulerName: "{{ scheduler_name }}"
+      containers:
+        - name: test
+          image: alpine
+          command: ["tail", "-f", "/dev/null"]
+          resources:
+            requests:
+              cpu: "{{ cpu_request_cores }}"
+              memory: "{{ memory_request_KiB }}Ki"
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: example.com/layer
+                    operator: In
+                    values:
+{%- if layer == 'fog' +%}
+                      - "fog"
+{%- elif layer == 'cloud' +%}
+                      - "cloud"
+{%- else +%}
+                      - "fog"
+                      - "cloud"
+{%- endif +%}

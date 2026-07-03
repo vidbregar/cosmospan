@@ -1,0 +1,39 @@
+---
+- name: Cleanup VM Benchmark Resources
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Stop and remove Nginx container from host
+      command: docker stop nginx-vm-benchmark
+      failed_when: false
+      become: yes
+
+    - name: Kill any remaining benchmark processes on VMs
+      shell: "pkill -f 'curl -s -o /dev/null'"
+      failed_when: false
+
+    - name: Clean up individual VM CSV files
+      shell: "rm -f /tmp/vm-benchmark-*.csv /tmp/vm-results-*.csv"
+      failed_when: false
+
+- name: Cleanup K8s Benchmark Resources
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files:
+    - vars/main.yml
+  tasks:
+    - name: Dynamically discover active contexts
+      set_fact:
+        contexts: "{{ contexts | default([]) + [ hostvars[item]['k8s_context'] ] }}"
+      loop: "{{ groups['all'] }}"
+      when: hostvars[item]['k8s_context'] is defined
+
+    - name: Deduplicate contexts list
+      set_fact:
+        contexts: "{{ contexts | unique | list }}"
+
+    - name: Delete benchmark namespace from all active clusters
+      shell: "kubectl --context={{ item }} delete namespace {{ benchmark_namespace }} --wait=false"
+      loop: "{{ contexts }}"
+      failed_when: false

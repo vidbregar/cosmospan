@@ -1,0 +1,56 @@
+{
+  "app-api-comp-3-workload-6": {
+    "app-api-comp-3-workload-7": 20
+  },
+  "app-api-comp-3-workload-7": {
+    "app-api-comp-3-workload-6": 20
+  },
+  "app-api-comp-3-workload-1": {
+    "app-api-comp-3-workload-2": 25
+  },
+  "app-api-comp-3-workload-2": {
+    "app-api-comp-3-workload-1": 25
+  },
+  "app-api-comp-4-workload-24": {
+    "app-api-comp-4-workload-23": 21
+  },
+  "app-api-comp-4-workload-23": {
+    "app-api-comp-4-workload-24": 21
+  },
+  "app-api-comp-3-workload-4": {
+    "app-api-comp-3-workload-13": 18
+  },
+  "app-api-comp-3-workload-13": {
+    "app-api-comp-3-workload-4": 18
+  },
+  "app-api-comp-4-workload-0": {
+    "app-api-comp-4-workload-1": 27
+  },
+  "app-api-comp-4-workload-1": {
+    "app-api-comp-4-workload-0": 27
+  },
+  "app-api-comp-4-workload-18": {
+    "app-api-comp-4-workload-20": 28
+  },
+  "app-api-comp-4-workload-20": {
+    "app-api-comp-4-workload-18": 28
+  },
+  "app-api-comp-1-workload-22": {
+    "app-api-comp-1-workload-21": 20
+  },
+  "app-api-comp-1-workload-21": {
+    "app-api-comp-1-workload-22": 20
+  },
+  "app-api-comp-4-workload-5": {
+    "app-api-comp-4-workload-6": 15
+  },
+  "app-api-comp-4-workload-6": {
+    "app-api-comp-4-workload-5": 15
+  },
+  "app-api-comp-4-workload-8": {
+    "app-api-comp-4-workload-7": 25
+  },
+  "app-api-comp-4-workload-7": {
+    "app-api-comp-4-workload-8": 25
+  }
+}

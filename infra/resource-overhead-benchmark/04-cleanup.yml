@@ -1,0 +1,16 @@
+---
+- name: Clean Up Resource Overhead Benchmark Remote Files
+  hosts: all
+  gather_facts: no
+  vars_files:
+    - vars/main.yml
+  tasks:
+    - name: Remove binary sar file
+      file:
+        path: "{{ sar_output_bin }}"
+        state: absent
+
+    - name: Remove converted CSV file
+      file:
+        path: "{{ sar_output_csv }}"
+        state: absent

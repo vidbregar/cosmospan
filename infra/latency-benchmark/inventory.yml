@@ -1,0 +1,26 @@
+all:
+  vars:
+    ansible_user: root
+  children:
+    cloud_k3s:
+      vars:
+        k8s_context: cloud-k3s-master1
+      hosts:
+        "46.225.167.241":
+        "128.140.11.235":
+        "178.105.88.201":
+        "46.225.169.140":
+        "46.225.173.160":
+        "5.75.161.137":
+    fog_k0s:
+      vars:
+        k8s_context: fog-k0s
+      hosts:
+        "5.78.70.17":
+    fog_k3s:
+      vars:
+        k8s_context: fog-k3s-master1
+      hosts:
+        "65.109.0.214":
+        "157.180.125.250":
+        "65.109.2.98":

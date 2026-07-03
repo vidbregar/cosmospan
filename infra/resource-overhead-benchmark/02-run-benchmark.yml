@@ -1,0 +1,32 @@
+---
+- name: Start Resource Overhead Benchmark
+  hosts: all
+  gather_facts: no
+  vars_files:
+    - vars/main.yml
+  tasks:
+    - name: Ensure any prior sar processes or files are cleared
+      file:
+        path: "{{ sar_output_bin }}"
+        state: absent
+
+    - name: Run sar in the background to capture metrics
+      shell: "sar -u -r -n DEV -d -o {{ sar_output_bin }} {{ interval_seconds }} {{ benchmark_duration_seconds }} > /dev/null 2>&1"
+      async: "{{ benchmark_duration_seconds | int + 120 }}"
+      poll: 0
+      register: sar_job
+
+- name: Wait for benchmark completion
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files:
+    - vars/main.yml
+  tasks:
+    - name: Pause for benchmark duration
+      pause:
+        seconds: "{{ benchmark_duration_seconds }}"
+
+    - name: Short buffer to let sar finalize writing
+      pause:
+        seconds: 30

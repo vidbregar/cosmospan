@@ -1,0 +1,115 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld
+  labels:
+    app: helloworld
+    service: helloworld
+spec:
+  ports:
+    - port: 5000
+      name: http
+  selector:
+    app: helloworld
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-v1
+  labels:
+    app: helloworld
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloworld
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: helloworld
+        version: v1
+    spec:
+      containers:
+        - name: helloworld
+          image: alpine:latest
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              while true; do 
+                echo -e "HTTP/1.1 200 OK\n\nv1" | nc -l -p 5000; 
+              done
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              cpu: "100m"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-v2
+  labels:
+    app: helloworld
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloworld
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: helloworld
+        version: v2
+    spec:
+      containers:
+        - name: helloworld
+          image: alpine:latest
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              while true; do 
+                echo -e "HTTP/1.1 200 OK\n\nv2" | nc -l -p 5000; 
+              done
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              cpu: "100m"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-v3
+  labels:
+    app: helloworld
+    version: v3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloworld
+      version: v3
+  template:
+    metadata:
+      labels:
+        app: helloworld
+        version: v3
+    spec:
+      containers:
+        - name: helloworld
+          image: alpine:latest
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              while true; do 
+                echo -e "HTTP/1.1 200 OK\n\nv3" | nc -l -p 5000; 
+              done
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              cpu: "100m"
