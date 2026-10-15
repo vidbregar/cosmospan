@@ -1,6 +1,6 @@
 # CosmoSpan
 
-[![DOI](https://zenodo.org/badge/1247600392.svg)](https://doi.org/10.5281/zenodo.21203121)
+[![DOI](https://zenodo.org/badge/1247600392.svg)](https://doi.org/10.5281/zenodo.21203122)
 
 This repository contains the source code for the `Toward Adaptive Workload Scheduling in Kubernetes Across the Edge-Cloud Continuum` research paper.
 CosmoSpan is a Kubernetes-based platform that provides seamless integration between the cloud and fog layers.
@@ -135,14 +135,17 @@ Read instructions in [infra/README.md](infra/README.md).
 If you use this work, please cite it using the following BibTeX entry:
 
 ```bibtex
-@unpublished{bregar2025toward,
+@article{bregar2026toward,
   author = {Bregar, Vid and Juri{\v{c}}, Matja{\v{z}} B.},
   title = {Toward Adaptive Workload Scheduling in Kubernetes Across the Edge-Cloud Continuum},
-  year = {2025},
-  month = {sep},
-  note = {Research Square Preprint (Version 1)},
-  doi = {10.21203/rs.3.rs-7555016/v1},
-  url = {https://doi.org/10.21203/rs.3.rs-7555016/v1}
+  journal = {Cluster Computing},
+  year = {2026},
+  volume = {29},
+  number = {15},
+  pages = {850},
+  issn = {1573-7543},
+  doi = {10.1007/s10586-026-06669-7},
+  url = {https://doi.org/10.1007/s10586-026-06669-7}
 }
 ```
 

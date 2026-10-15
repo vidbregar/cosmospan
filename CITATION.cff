@@ -1,8 +1,7 @@
 cff-version: 1.2.0
 title: CosmoSpan
 message: >-
-  If you use this software, please cite it using the
-  metadata from this file.
+  If you use this software, please cite the article below.
 type: software
 authors:
   - given-names: Vid
@@ -11,6 +10,26 @@ authors:
     family-names: Jurič
 identifiers:
   - type: doi
-    value: 10.21203/rs.3.rs-7555016/v1
+    value: 10.5281/zenodo.21203122
+    description: Software archive, release v1.0.0 (Zenodo)
 repository-code: 'https://github.com/vidbregar/cosmospan'
 license: MIT
+version: 1.0.0
+preferred-citation:
+  type: article
+  authors:
+    - given-names: Vid
+      family-names: Bregar
+    - given-names: Matjaž B.
+      family-names: Jurič
+  title: >-
+    Toward adaptive workload scheduling in Kubernetes across the
+    edge-cloud continuum
+  journal: Cluster Computing
+  volume: 29
+  issue: 15
+  start: 850
+  year: 2026
+  issn: 1573-7543
+  doi: 10.1007/s10586-026-06669-7
+  url: 'https://doi.org/10.1007/s10586-026-06669-7'
